@@ -54,14 +54,14 @@ def create_input_script(psz_timestamp):
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).codecs.encode()
-  print (script_prefix + psz_timestamp.encode('hex'))
-  return (script_prefix + psz_timestamp.encode('hex')).decode('hex')
+  print (script_prefix + psz_timestamp.codecs.encode())
+  return (script_prefix + psz_timestamp.codecs.encode()).codecs.decode()
 
 
 def create_output_script(pubkey):
   script_len = '41'
   OP_CHECKSIG = 'ac'
-  return (script_len + pubkey + OP_CHECKSIG).decode('hex')
+  return (script_len + pubkey + OP_CHECKSIG).codecs.decode()
 
 
 def create_transaction(input_script, output_script,options):
@@ -141,7 +141,7 @@ def generate_hashes_from_block(data_block, algorithm):
 
 
 def is_genesis_hash(header_hash, target):
-  return int(header_hash.encode('hex_codec'), 16) < target
+  return int(header_hash.codecs.encode(), 16) < target
 
 
 def calculate_hashrate(nonce, last_updated):
@@ -158,7 +158,7 @@ def calculate_hashrate(nonce, last_updated):
 
 def print_block_info(options, hash_merkle_root):
   print ("algorithm: "    + (options.algorithm))
-  print ("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec'))
+  print ("merkle hash: "  + hash_merkle_root[::-1].codecs.encode())
   print ("pszTimestamp: " + options.timestamp)
   print ("pubkey: "       + options.pubkey)
   print ("time: "         + str(options.time))
@@ -168,7 +168,7 @@ def print_block_info(options, hash_merkle_root):
 def announce_found_genesis(genesis_hash, nonce):
   print ("genesis hash found!")
   print ("nonce: "        + str(nonce))
-  print ("genesis hash: " + genesis_hash.encode('hex_codec'))
+  print ("genesis hash: " + genesis_hash.codecs.encode())
 
 
 # GOGOGO!
