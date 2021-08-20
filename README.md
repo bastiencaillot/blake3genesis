@@ -11,7 +11,7 @@ You will need to install Blake3 dependencies in python, for example with the fol
                
  Then, run : 
            
-            python genesis.py
+            python3 genesis.py
             
 You can change the timestamp for example,
 
