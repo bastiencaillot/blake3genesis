@@ -1,7 +1,7 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
 
 from blake3 import blake3  #Blake3 hash function in Python language
-import binascii, struct, array, os, time, sys, optparse , codecs
+import binascii, struct, array, os, time, sys, optparse
 
 def main():
   options = get_args()
@@ -53,7 +53,7 @@ def create_input_script(psz_timestamp):
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
-  script_prefix = '04ffff001d0104' + psz_prefix + binascii.hexlify(b'psz_timestamp')
+  script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode('hex')
   print ((script_prefix + psz_timestamp.encode('hex')))
   return (script_prefix + psz_timestamp.encode('hex')).decode('hex')
 
@@ -157,18 +157,18 @@ def calculate_hashrate(nonce, last_updated):
 
 
 def print_block_info(options, hash_merkle_root):
- print("algorithm: "    + (options.algorithm))
- print("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec'))
- print("pszTimestamp: " + options.timestamp)
- print("pubkey: "       + options.pubkey)
- print("time: "         + str(options.time))
- print("bits: "         + str(hex(options.bits)))
+ print(("algorithm: "    + (options.algorithm)))
+ print(("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec')))
+ print(("pszTimestamp: " + options.timestamp))
+ print(("pubkey: "       + options.pubkey))
+ print(("time: "         + str(options.time)))
+ print(("bits: "         + str(hex(options.bits))))
 
 
 def announce_found_genesis(genesis_hash, nonce):
   print("genesis hash found!")
-  print("nonce: "        + str(nonce))
-  print("genesis hash: " + genesis_hash.encode('hex_codec'))
+  print(("nonce: "        + str(nonce)))
+  print(("genesis hash: " + genesis_hash.encode('hex_codec')))
 
 
 # GOGOGO!
