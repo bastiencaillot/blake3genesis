@@ -1,7 +1,8 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
 
 from blake3 import blake3  #Blake3 hash function in Python language
-import binascii, struct, array, os, time, sys, optparse , codecs
+import binascii, struct, array, os, time, sys, optparse
+from codecs import encode, decode
 
 def main():
   options = get_args()
