@@ -1,4 +1,5 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
+# -*- coding: utf8 -*-
 
 from blake3 import blake3  #Blake3 hash function in Python language
 import binascii, struct, array, os, time, sys, optparse
