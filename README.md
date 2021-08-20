@@ -5,6 +5,13 @@ You will need to install Blake3 dependencies in python, for example with the fol
 
                sudo apt install python3-pip
                pip3 install blake3
+               sudo apt install python3
+               
+               
+               
+ Then, run : 
+           
+            python3 genesis.py
 
 
 
