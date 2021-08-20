@@ -54,7 +54,7 @@ def create_input_script(psz_timestamp):
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode('hex')
-  print ((script_prefix + psz_timestamp.encode('hex')))
+  print (script_prefix + psz_timestamp.encode('hex'))
   return (script_prefix + psz_timestamp.encode('hex')).decode('hex')
 
 
@@ -117,7 +117,7 @@ def create_block_header(hash_merkle_root, time, bits, nonce):
 
 # https://en.bitcoin.it/wiki/Block_hashing_algorithm
 def generate_hash(data_block, algorithm, start_nonce, bits):
-  print ('Searching for genesis hash..')
+  print 'Searching for genesis hash..'
   nonce           = start_nonce
   last_updated    = time.time()
   # https://en.bitcoin.it/wiki/Difficulty
@@ -136,7 +136,7 @@ def generate_hash(data_block, algorithm, start_nonce, bits):
 def generate_hashes_from_block(data_block, algorithm):
   blake3_hash = blake3(blake3(data_block).digest()).digest()[::-1]
   header_hash = ""
-  header_hash = blake3_hash
+    header_hash = blake3_hash
   return blake3_hash, header_hash
 
 
@@ -157,18 +157,18 @@ def calculate_hashrate(nonce, last_updated):
 
 
 def print_block_info(options, hash_merkle_root):
- print(("algorithm: "    + (options.algorithm)))
- print(("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec')))
- print(("pszTimestamp: " + options.timestamp))
- print(("pubkey: "       + options.pubkey))
- print(("time: "         + str(options.time)))
- print(("bits: "         + str(hex(options.bits))))
+  print "algorithm: "    + (options.algorithm)
+  print "merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec')
+  print "pszTimestamp: " + options.timestamp
+  print "pubkey: "       + options.pubkey
+  print "time: "         + str(options.time)
+  print "bits: "         + str(hex(options.bits))
 
 
 def announce_found_genesis(genesis_hash, nonce):
-  print("genesis hash found!")
-  print(("nonce: "        + str(nonce)))
-  print(("genesis hash: " + genesis_hash.encode('hex_codec')))
+  print "genesis hash found!"
+  print "nonce: "        + str(nonce)
+  print "genesis hash: " + genesis_hash.encode('hex_codec')
 
 
 # GOGOGO!
