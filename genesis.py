@@ -119,7 +119,7 @@ def create_block_header(hash_merkle_root, time, bits, nonce):
 
 # https://en.bitcoin.it/wiki/Block_hashing_algorithm
 def generate_hash(data_block, algorithm, start_nonce, bits):
-  print 'Searching for genesis hash..'
+  print ('Searching for genesis hash..')
   nonce           = start_nonce
   last_updated    = time.time()
   # https://en.bitcoin.it/wiki/Difficulty
