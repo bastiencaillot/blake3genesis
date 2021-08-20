@@ -55,7 +55,7 @@ def create_input_script(psz_timestamp):
 
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode()
   print (script_prefix + psz_timestamp.encode())
-  return (script_prefix + psz_timestamp.encode()).decode()
+  return (script_prefix + psz_timestamp.encode()).decode('ascii')
 
 
 def create_output_script(pubkey):
