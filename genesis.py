@@ -1,7 +1,6 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
-# -*- coding: utf8 -*-
 
-from blake3 import blake3  
+from blake3 import blake3  #Blake3 hash function in Python language
 import binascii, struct, array, os, time, sys, optparse
 
 from construct import *
@@ -26,7 +25,7 @@ def get_args():
   parser = optparse.OptionParser()
   parser.add_option("-t", "--time", dest="time", default=int(time.time()), 
                    type="int", help="the (unix) time when the genesisblock is created")
-  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC 20/Aug/2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says",
+  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Aug 20 2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says",
                    type="string", help="the pszTimestamp found in the coinbase of the genesisblock")
   parser.add_option("-n", "--nonce", dest="nonce", default=0,
                    type="int", help="the first value of the nonce that will be incremented when searching the genesis hash")
@@ -120,7 +119,7 @@ def create_block_header(hash_merkle_root, time, bits, nonce):
 
 # https://en.bitcoin.it/wiki/Block_hashing_algorithm
 def generate_hash(data_block, algorithm, start_nonce, bits):
-  print 'Searching for genesis hash..'
+  print ('Searching for genesis hash..')
   nonce           = start_nonce
   last_updated    = time.time()
   # https://en.bitcoin.it/wiki/Difficulty
@@ -160,18 +159,18 @@ def calculate_hashrate(nonce, last_updated):
 
 
 def print_block_info(options, hash_merkle_root):
-  print "algorithm: "    + (options.algorithm)
-  print "merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec')
-  print "pszTimestamp: " + options.timestamp
-  print "pubkey: "       + options.pubkey
-  print "time: "         + str(options.time)
-  print "bits: "         + str(hex(options.bits))
+  print ("algorithm: "    + (options.algorithm))
+  print ("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec'))
+  print ("pszTimestamp: " + options.timestamp)
+  print ("pubkey: "       + options.pubkey)
+  print ("time: "         + str(options.time))
+  print ("bits: "         + str(hex(options.bits)))
 
 
 def announce_found_genesis(genesis_hash, nonce):
-  print "genesis hash found!"
-  print "nonce: "        + str(nonce)
-  print "genesis hash: " + genesis_hash.encode('hex_codec')
+  print ("genesis hash found!")
+  print ("nonce: "        + str(nonce))
+  print ("genesis hash: " + genesis_hash.encode('hex_codec'))
 
 
 # GOGOGO!
