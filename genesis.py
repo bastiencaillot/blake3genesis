@@ -54,14 +54,14 @@ def create_input_script(psz_timestamp):
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode("utf-8").hex()
-  print ((script_prefix + psz_timestamp.encode('hex')))
-  return (script_prefix + psz_timestamp.encode('hex')).decode('hex')
+  print ((script_prefix + psz_timestamp.encode("utf-8").hex()))
+  return (script_prefix + psz_timestamp.encode("utf-8").hex()).decode("utf-8").hex()
 
 
 def create_output_script(pubkey):
   script_len = '41'
   OP_CHECKSIG = 'ac'
-  return (script_len + pubkey + OP_CHECKSIG).decode('hex')
+  return (script_len + pubkey + OP_CHECKSIG).decode("utf-8").hex()
 
 
 def create_transaction(input_script, output_script,options):
