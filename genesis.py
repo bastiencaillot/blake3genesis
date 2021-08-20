@@ -162,7 +162,7 @@ def print_block_info(options, hash_merkle_root):
   print ("pszTimestamp: " + options.timestamp)
   print ("pubkey: "       + options.pubkey)
   print ("time: "         + str(options.time))
-  print ("bits: "         + str(hex(options.bits)))
+  print ("bits: "         + str(codecs(options.bits)))
 
 
 def announce_found_genesis(genesis_hash, nonce):
