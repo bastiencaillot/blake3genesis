@@ -166,9 +166,9 @@ def print_block_info(options, hash_merkle_root):
 
 
 def announce_found_genesis(genesis_hash, nonce):
-  print "genesis hash found!"
-  print "nonce: "        + str(nonce)
-  print "genesis hash: " + genesis_hash.encode('hex_codec')
+  print("genesis hash found!")
+  print("nonce: "        + str(nonce))
+  print("genesis hash: " + genesis_hash.encode('hex_codec'))
 
 
 # GOGOGO!
