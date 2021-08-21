@@ -56,7 +56,7 @@ def create_input_script(psz_timestamp):
 
   script_prefix = '04ffff001d0104' + psz_prefix + hex(ord(chr(len(psz_timestamp))))
   print ("script_prefix + hex(ord(psz_timestamp))")
-  return codecs.decode(script_prefix + psz_timestamp , 'ascii')
+  return codecs.decode(script_prefix + hex(ord(psz_timestamp)) , 'hex')
 
 
 def create_output_script(pubkey):
