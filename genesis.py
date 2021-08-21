@@ -56,7 +56,7 @@ def create_input_script(psz_timestamp):
 
   script_prefix = '04ffff001d0104' + psz_prefix +  codecs.encode(chr(len(psz_timestamp)) , 'hex')
   print ("script_prefix +  codecs.encode(psz_timestamp , 'hex')")
-  return codecs.decode(script_prefix + codecs.encode(psz_timestamp, 'hex')) , 'hex')
+  return codecs.decode(script_prefix + codecs.encode(psz_timestamp, 'hex') , 'hex')
 
 
 def create_output_script(pubkey):
