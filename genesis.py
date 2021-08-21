@@ -60,7 +60,7 @@ def create_input_script(psz_timestamp):
 def create_output_script(pubkey):
   script_len = '41'
   OP_CHECKSIG = 'ac'
-  return binascii.unhexlify((script_len + pubkey + OP_CHECKSIG))
+  return binascii.unhexlify(script_len + pubkey + OP_CHECKSIG)
 
 
 def create_transaction(input_script, output_script,options):
