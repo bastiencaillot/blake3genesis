@@ -55,7 +55,7 @@ def create_input_script(psz_timestamp):
 
   script_prefix = '04ffff001d0104' + psz_prefix +  binascii.hexlify(chr(len(psz_timestamp)))
   print ("script_prefix +  binascii.hexlify(psz_timestamp)")
-  return binascii.unhexlify((script_prefix + binascii.hexlify(psz_timestamp))
+  return binascii.unhexlify(script_prefix + binascii.hexlify(psz_timestamp))
 
 
 def create_output_script(pubkey):
