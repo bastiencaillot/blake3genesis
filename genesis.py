@@ -2,8 +2,6 @@
 
 from blake3 import blake3  #Blake3 hash function in Python language
 import binascii, struct, array, os, time, sys, optparse
-import codecs
-
 def main():
   options = get_args()
 
@@ -54,7 +52,7 @@ def create_input_script(psz_timestamp):
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
-  script_prefix = '04ffff001d0104' + psz_prefix +  codecs.encode(psz_timestamp , 'hex')
+  script_prefix = '04ffff001d0104' + psz_prefix +  binascii.hexlify(chr(len(psz_timestamp)))
   print ("script_prefix +  codecs.encode(psz_timestamp , 'hex')")
   return codecs.decode(script_prefix + codecs.encode(psz_timestamp, 'hex') , 'hex')
 
