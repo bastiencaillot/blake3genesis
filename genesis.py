@@ -1,7 +1,7 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
 
 from blake3 import blake3  #Blake3 hash function in Python language
-import binascii, struct, array, os, time, sys, optparse
+import binascii, struct, array, os, time, sys, optparse, codecs
 
 def main():
   options = get_args()
@@ -55,7 +55,7 @@ def create_input_script(psz_timestamp):
     
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode().hex()
   print (script_prefix + psz_timestamp.encode().hex())
-  return (script_prefix + psz_timestamp.encode().hex())
+  return codecs.encode((script_prefix + psz_timestamp.encode().hex()), 'hex_codec')
 
   
 
