@@ -61,7 +61,7 @@ def create_input_script(psz_timestamp):
     
   script_prefix = '04ffff001d0104' + psz_prefix +nvidia
   print (script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness').decode())
-  return bytes.fromhex(script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness')).decode()
+  return bytes.fromhex(script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness').decode()).decode()
   
 
 
