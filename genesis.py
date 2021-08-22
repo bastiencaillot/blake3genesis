@@ -2,7 +2,6 @@
 
 from blake3 import blake3  #Blake3 hash function in Python language
 import binascii, struct, array, os, time, sys, optparse, codecs
-from construct import *
 
 def main():
   options = get_args()
