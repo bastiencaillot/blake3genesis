@@ -52,9 +52,9 @@ def get_algorithm(options):
 def create_input_script(psz_timestamp):
   psz_prefix = ""
   #use OP_PUSHDATA1 if required
-  if len(psz_timestamp) > 76: psz_prefix = '4c'
+  if b'len(psz_timestamp) > 76: psz_prefix = '4c'
 
-  script_prefix = binascii.hexlify('04ffff001d0104' + psz_prefix + psz_timestamp)
+  script_prefix = binascii.hexlify('04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)))
   print ("script_prefix +  binascii.hexlify(psz_timestamp)")
   return binascii.unhexlify(script_prefix + binascii.hexlify(psz_timestamp))
 
