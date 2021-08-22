@@ -58,8 +58,7 @@ def create_input_script(psz_timestamp):
   binx =  binascii.hexlify(data)
   nvidia = str(binx)
   
-  bastcoin_timestamp = b'CNBC Aug 20 2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says'
-  yoyo = binascii.hexlify(bastcoin_timestamp)
+  yoyo = binascii.hexlify(b'CNBC Aug 20 2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says')
   
     
   script_prefix = '04ffff001d0104' + psz_prefix +nvidia
