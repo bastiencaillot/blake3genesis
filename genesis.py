@@ -53,15 +53,9 @@ def create_input_script(psz_timestamp):
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
     
-  string = chr(len(psz_timestamp))
-  data = bytes(string, 'ascii')
-  binx =  binascii.hexlify(data)
-  nvidia = str(binx)
-  
-    
-  script_prefix = '04ffff001d0104' + psz_prefix +nvidia
-  print (script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness').decode())
-  return bytes.fromhex(script_prefix).decode()  + bytes.fromhex(binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness').decode()).decode()
+  script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode().(hex)
+  print (script_prefix + psz_timestamp.encode().(hex))
+  return binascii.unhexlify(script_prefix + psz_timestamp.encode('hex'))
   
 
 
