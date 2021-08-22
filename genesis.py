@@ -53,7 +53,7 @@ def create_input_script(psz_timestamp):
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
     
-  string = chr(len(psz_timestamp)
+  string = chr(len(psz_timestamp))
   data = bytes(string, 'ascii')
   
     
