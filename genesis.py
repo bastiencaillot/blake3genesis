@@ -58,7 +58,7 @@ def create_input_script(psz_timestamp):
   binx =  binascii.hexlify(data)
   
     
-  script_prefix = '04ffff001d0104' + psz_prefix + binx
+  script_prefix = '04ffff001d0104' + psz_prefix
   print (script_prefix + psz_timestamp.encode().hex())
   decoder = bytes.fromhex(script_prefix + psz_timestamp.encode().hex()).decode('utf-16')
   return decoder
