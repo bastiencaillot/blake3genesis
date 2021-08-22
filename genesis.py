@@ -55,8 +55,7 @@ def create_input_script(psz_timestamp):
   if len(psz_timestamp) > 76: psz_prefix = '4c'
 
   script_prefix = '04ffff001d0104' + psz_prefix + codecs.encode(chr(len(psz_timestamp)))
-  print ("script_prefix +  binascii.hexlify(psz_timestamp)")
-  return binascii.unhexlify(script_prefix + binascii.hexlify(psz_timestamp))
+  
 
 
 def create_output_script(pubkey):
