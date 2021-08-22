@@ -23,7 +23,7 @@ def get_args():
   parser = optparse.OptionParser()
   parser.add_option("-t", "--time", dest="time", default=int(time.time()), 
                    type="int", help="the (unix) time when the genesisblock is created")
-  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Aug 20 2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says",
+  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness",
                    type="string", help="the pszTimestamp found in the coinbase of the genesisblock")
   parser.add_option("-n", "--nonce", dest="nonce", default=0,
                    type="int", help="the first value of the nonce that will be incremented when searching the genesis hash")
@@ -58,12 +58,10 @@ def create_input_script(psz_timestamp):
   binx =  binascii.hexlify(data)
   nvidia = str(binx)
   
-  yoyo = binascii.hexlify(b'CNBC Aug 20 2021 Nvidia’s $40 billion Arm takeover warrants an in-depth competition probe, UK regulator says')
-  
     
   script_prefix = '04ffff001d0104' + psz_prefix +nvidia
-  print (script_prefix + yoyo)
-  return bytes.fromhex(script_prefix + yoyo).decode()
+  print (script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness'))
+  return bytes.fromhex(script_prefix + binascii.hexlify(b'CNBC Aug 22 2021 Bitcoin nears $50,000 after months of weakness')).decode()
   
 
 
