@@ -56,9 +56,10 @@ def create_input_script(psz_timestamp):
   string = chr(len(psz_timestamp))
   data = bytes(string, 'ascii')
   binx =  binascii.hexlify(data)
+  nvidia = str(binx)
   
     
-  script_prefix = '04ffff001d0104' + psz_prefix
+  script_prefix = '04ffff001d0104' + psz_prefix +nvidia
   print (script_prefix + psz_timestamp.encode().hex())
   decoder = bytes.fromhex(script_prefix + psz_timestamp.encode().hex()).decode('utf-16')
   return decoder
