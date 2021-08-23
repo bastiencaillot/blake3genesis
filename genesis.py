@@ -57,9 +57,7 @@ def create_input_script(psz_timestamp):
     
   script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode().hex()
   print (script_prefix + psz_timestamp.encode().hex())
-  return bytes.fromhex(script_prefix + psz_timestamp.encode().hex()).decode()
-  
-
+  return binascii.unhexlify(script_prefix + psz_timestamp.encode().hex())
 
 def create_output_script(pubkey):
   script_len = '41'
@@ -82,7 +80,7 @@ def create_transaction(input_script, output_script,options):
     Bytes('output_script',  0x43),
     UBInt32('locktime'))
 
-  tx = transaction.parse('\x00'*(127 + ord(len(input_script))))
+  tx = transaction.parse('\x00'*(127 + binascii.unhexlify(len(input_script))))
   tx.version           = struct.pack('<I', 1)
   tx.num_inputs        = 1
   tx.prev_output       = struct.pack('<qqqq', 0,0,0,0)
