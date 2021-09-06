@@ -1,11 +1,12 @@
 #Distributed under GNU General Public License Number 3 by Bastien Caillot and Bastcoin Core Developers
 
 from blake3 import blake3  #Blake3 hash function in Python language
-import binascii, struct, array, os, time, sys, optparse
+import binascii, struct, array, os, time, sys, optparse, hashlib
 
 from construct import *
 
 def main():
+  hasher = blake3()
   options = get_args()
 
   algorithm = get_algorithm(options)
@@ -13,7 +14,7 @@ def main():
   input_script  = create_input_script(options.timestamp)
   output_script = create_output_script(options.pubkey)
   tx = create_transaction(input_script, output_script,options)
-  hash_merkle_root = blake3(blake3(tx).digest()).digest()
+  hash_merkle_root = hashlib.sha256(hashlib.sha256(tx).digest()).digest()
   print_block_info(options, hash_merkle_root)
 
   block_header        = create_block_header(hash_merkle_root, options.time, options.bits, options.nonce)
@@ -135,7 +136,7 @@ def generate_hash(data_block, algorithm, start_nonce, bits):
 
 
 def generate_hashes_from_block(data_block, algorithm):
-  blake3_hash = blake3(blake3(data_block).digest()).digest()[::-1]
+  blake3_hash = hasher.update(data_block).digest()
   header_hash = ""
   header_hash = blake3_hash
   return blake3_hash, header_hash
@@ -174,3 +175,4 @@ def announce_found_genesis(genesis_hash, nonce):
 
 # GOGOGO!
 main()
+
