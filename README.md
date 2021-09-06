@@ -5,7 +5,6 @@ You will need to install Blake3 dependencies in python, for example with the fol
 
                sudo apt install python3-pip
                pip3 install blake3
-               sudo apt install python
                pip3 install construct==2.5.2
                
                
