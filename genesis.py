@@ -56,7 +56,7 @@ def create_input_script(psz_timestamp):
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
     
-  script_prefix = '04ffff001d0104' + psz_prefix + codecs.encode((chr(len(psz_timestamp))).encode(), 'hex')
+  script_prefix = '04ffff001d0104' + psz_prefix + codecs.encode(b"(chr(len(psz_timestamp))", 'hex')
   print(script_prefix + binascii.hexlify(psz_timestamp.encode().hex()))
   return binascii.unhexlify(script_prefix + binascii.hexlify(psz_timestamp))
 
