@@ -55,15 +55,17 @@ def create_input_script(psz_timestamp):
   psz_prefix = ""
   #use OP_PUSHDATA1 if required
   if len(psz_timestamp) > 76: psz_prefix = '4c'
-    
-  script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode().hex()
-  print (script_prefix + psz_timestamp.encode().hex())
-  return binascii.unhexlify(script_prefix + psz_timestamp.encode().hex())
+
+  script_prefix = '04ffff001d0104' + psz_prefix + chr(len(psz_timestamp)).encode('hex')
+  print (script_prefix + psz_timestamp.encode('hex'))
+  return (script_prefix + psz_timestamp.encode('hex')).decode('hex')
+
 
 def create_output_script(pubkey):
   script_len = '41'
   OP_CHECKSIG = 'ac'
-  return binascii.unhexlify(script_len + pubkey + OP_CHECKSIG)
+  return (script_len + pubkey + OP_CHECKSIG).decode('hex')
+
 
 
 def create_transaction(input_script, output_script,options):
