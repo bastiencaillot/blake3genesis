@@ -52,18 +52,21 @@ def get_algorithm(options):
     sys.exit("Error: Given algorithm must be one of: " + str(supported_algorithms))
 
 def create_input_script(psz_timestamp):
-  psz_prefix = ""
+  timestamp_bytes = psz_timestamp.encode('utf-8')
+  psz_prefix = ''
   #use OP_PUSHDATA1 if required
-  if len(psz_timestamp) > 76: psz_prefix = '4c'
+  if len(timestamp_bytes) > 76: psz_prefix = '4c'
     
-  script_prefix = '04ffff001d0104' + psz_prefix + codecs.encode(b"(chr(len(psz_timestamp))", 'hex')
-  print(script_prefix + binascii.hexlify(psz_timestamp.encode().hex()))
-  return binascii.unhexlify(script_prefix + binascii.hexlify(psz_timestamp))
+  length_in_hex = hex(len(timestamp_bytes))[2:]
+  script_prefix = '04ffff001d0104' + psz_prefix + length_in_hex
+  input_script_hex = script_prefix + timestamp_bytes.hex()
+  print(input_script_hex)
+  return bytes.fromhex(input_script_hex)
 
 def create_output_script(pubkey):
   script_len = '41'
   OP_CHECKSIG = 'ac'
-  return binascii.unhexlify(script_len + pubkey + OP_CHECKSIG)
+  return bytes.fromhex(script_len + pubkey + OP_CHECKSIG)
 
 
 
@@ -82,7 +85,7 @@ def create_transaction(input_script, output_script,options):
     Bytes('output_script',  0x43),
     UBInt32('locktime'))
 
-  tx = transaction.parse('\x00'*(127 + binascii.unhexlify(chr(input_script))))
+  tx = transaction.parse(b'\x00'*(127 + len(input_script))))
   tx.version           = struct.pack('<I', 1)
   tx.num_inputs        = 1
   tx.prev_output       = struct.pack('<qqqq', 0,0,0,0)
@@ -108,7 +111,7 @@ def create_block_header(hash_merkle_root, time, bits, nonce):
     Bytes("bits", 4),
     Bytes("nonce", 4))
 
-  genesisblock = block_header.parse('\x00'*80)
+  genesisblock = block_header.parse(b'\x00'*80)
   genesisblock.version          = struct.pack('<I', 1)
   genesisblock.hash_prev_block  = struct.pack('<qqqq', 0,0,0,0)
   genesisblock.hash_merkle_root = hash_merkle_root
@@ -144,7 +147,7 @@ def generate_hashes_from_block(data_block, algorithm):
 
 
 def is_genesis_hash(header_hash, target):
-  return int(header_hash.encode('hex_codec'), 16) < target
+  return int(header_hash.hex(), 16) < target
 
 
 def calculate_hashrate(nonce, last_updated):
@@ -161,7 +164,7 @@ def calculate_hashrate(nonce, last_updated):
 
 def print_block_info(options, hash_merkle_root):
  print("algorithm: "    + (options.algorithm))
- print("merkle hash: "  + hash_merkle_root[::-1].encode('hex_codec'))
+ print("merkle hash: "  + hash_merkle_root[::-1].hex())
  print("pszTimestamp: " + options.timestamp)
  print("pubkey: "       + options.pubkey)
  print("time: "         + str(options.time))
@@ -171,7 +174,7 @@ def print_block_info(options, hash_merkle_root):
 def announce_found_genesis(genesis_hash, nonce):
   print("genesis hash found!")
   print("nonce: "        + str(nonce))
-  print("genesis hash: " + genesis_hash.encode('hex_codec'))
+  print("genesis hash: " + genesis_hash.hex())
 
 
 # GOGOGO!
