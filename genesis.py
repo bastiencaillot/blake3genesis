@@ -85,7 +85,7 @@ def create_transaction(input_script, output_script,options):
     Bytes('output_script',  0x43),
     UBInt32('locktime'))
 
-  tx = transaction.parse(b'\x00'*(127 + len(input_script))))
+  tx = transaction.parse(b'\x00'*(127 + len(input_script)))
   tx.version           = struct.pack('<I', 1)
   tx.num_inputs        = 1
   tx.prev_output       = struct.pack('<qqqq', 0,0,0,0)
