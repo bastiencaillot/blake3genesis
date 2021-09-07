@@ -139,8 +139,7 @@ def generate_hash(data_block, algorithm, start_nonce, bits):
 
 
 def generate_hashes_from_block(data_block, algorithm):
-  hasher = blake3()
-  blake3_hash = hasher.update(data_block).digest()
+  blake3_hash = blake3(data_block).digest()
   header_hash = ""
   header_hash = blake3_hash
   return blake3_hash, header_hash
