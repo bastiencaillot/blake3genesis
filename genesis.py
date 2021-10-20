@@ -25,7 +25,7 @@ def get_args():
   parser = optparse.OptionParser()
   parser.add_option("-t", "--time", dest="time", default=int(time.time()), 
                    type="int", help="the (unix) time when the genesisblock is created")
-  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Sep 08 2021 Most expensive home in America defaults on $165 million in debt, heads for sale",
+  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Oct 20 2021 SpaceX expected to become more valuable than Tesla, Morgan Stanley survey finds",
                    type="string", help="the pszTimestamp found in the coinbase of the genesisblock")
   parser.add_option("-n", "--nonce", dest="nonce", default=0,
                    type="int", help="the first value of the nonce that will be incremented when searching the genesis hash")
@@ -40,7 +40,7 @@ def get_args():
 
   (options, args) = parser.parse_args()
   if not options.bits:
-      options.bits = 0x1e0ffff0
+      options.bits = 0x1d00ffff
   return options
 
 def get_algorithm(options):
