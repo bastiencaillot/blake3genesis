@@ -40,7 +40,7 @@ def get_args():
 
   (options, args) = parser.parse_args()
   if not options.bits:
-      options.bits = 0x1e0ffff0
+      options.bits = 0x1e00ffff
   return options
 
 def get_algorithm(options):
