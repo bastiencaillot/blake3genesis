@@ -25,7 +25,7 @@ def get_args():
   parser = optparse.OptionParser()
   parser.add_option("-t", "--time", dest="time", default=int(time.time()), 
                    type="int", help="the (unix) time when the genesisblock is created")
-  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Oct 21 2021 Microsoft’s new $1,500 folding phone is a huge improvement from last year",
+  parser.add_option("-z", "--timestamp", dest="timestamp", default="CNBC Oct 26 2021 Elon Musk is now nearly $100 billion richer than Jeff Bezos, and his net worth is on the cusp of hitting $300 billion",
                    type="string", help="the pszTimestamp found in the coinbase of the genesisblock")
   parser.add_option("-n", "--nonce", dest="nonce", default=0,
                    type="int", help="the first value of the nonce that will be incremented when searching the genesis hash")
